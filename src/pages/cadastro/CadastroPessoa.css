@@ -1,0 +1,110 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  font-family: 'Inter', sans-serif;
+  background-color: #f3f4f6;
+  color: #1e293b;
+}
+
+.cadastro-bg {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #f3f4f6;
+  padding: 32px 0;
+}
+
+.cadastro-form {
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 4px 24px rgba(30,41,59,0.10);
+  padding: 32px 28px;
+  width: 100%;
+  max-width: 420px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+  max-height: 120vh;
+}
+
+.cadastro-form h2 {
+  text-align: center;
+  color: #2563eb;
+  margin-bottom: 12px;
+  font-size: 1.5rem;
+}
+
+.cadastro-form label {
+  color: #1e293b;
+  font-weight: 500;
+  margin-bottom: 2px;
+  font-size: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+}
+
+.cadastro-form input[type="text"],
+.cadastro-form input[type="date"],
+.cadastro-form select,
+.cadastro-form textarea {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+}
+.cadastro-form input:focus,
+.cadastro-form select:focus,
+.cadastro-form textarea:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px #2563eb22;
+}
+
+.cadastro-form button {
+  background: #2563eb;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+}
+.cadastro-form button:hover {
+  background: #1e40af;
+}
+
+.foto-section {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 8px;
+  margin-bottom: 8px;
+}
+.foto-label {
+  font-weight: 600;
+  color: #1e293b;
+}
+.foto-preview {
+  width: 90px;
+  height: 90px;
+  object-fit: cover;
+  border-radius: 8px;
+  border: 1px solid #cbd5e1;
+  margin-top: 4px;
+}
+
+@media (max-width: 600px) {
+  .cadastro-form {
+    padding: 16px 4px;
+    max-width: 98vw;
+  }
+  .cadastro-bg {
+    padding: 8px 0;
+  }
+} 

@@ -1,0 +1,129 @@
+html, body {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.login-bg {
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: linear-gradient(135deg, #1e293b 0%, #2563eb 100%);
+  padding: 16px;
+}
+
+.login-form {
+  background: rgba(255,255,255,0.95);
+  border-radius: 16px;
+  box-shadow: 0 8px 32px rgba(30,41,59,0.18);
+  padding: 32px 24px;
+  width: 100%;
+  max-width: 370px;
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.login-title {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #1e293b;
+  text-align: center;
+  margin-bottom: 4px;
+  letter-spacing: 1px;
+}
+
+.login-subtitle {
+  font-size: 1rem;
+  color: #2563eb;
+  text-align: center;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+
+.login-input {
+  border: 1px solid #cbd5e1;
+  border-radius: 6px;
+  padding: 10px 12px;
+  font-size: 1rem;
+  outline: none;
+  transition: border 0.2s;
+  margin-bottom: 8px;
+}
+.login-input:focus {
+  border-color: #2563eb;
+  box-shadow: 0 0 0 2px #2563eb22;
+}
+
+.login-error {
+  background: #fee2e2;
+  color: #b91c1c;
+  border: 1px solid #fca5a5;
+  border-radius: 6px;
+  padding: 8px 12px;
+  font-size: 0.95rem;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+.login-btn {
+  background: #2563eb;
+  color: #fff;
+  font-weight: bold;
+  border: none;
+  border-radius: 6px;
+  padding: 12px 0;
+  font-size: 1.1rem;
+  margin-top: 8px;
+  cursor: pointer;
+  transition: background 0.2s, opacity 0.2s;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.login-btn:hover:not(:disabled) {
+  background: #1e40af;
+}
+.login-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+}
+
+.login-spinner {
+  border: 3px solid #fff;
+  border-top: 3px solid #2563eb;
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+@keyframes spin {
+  0% { transform: rotate(0deg); }
+  100% { transform: rotate(360deg); }
+}
+
+@media (max-width: 500px) {
+  .login-form {
+    padding: 20px 8px;
+    max-width: 98vw;
+  }
+  .login-title {
+    font-size: 1.3rem;
+  }
+} 
+
+.label-title {
+  color: #2563eb;
+  font-weight: bold;
+  font-size: 1.08rem;
+  margin-bottom: 4px;
+  margin-top: 12px;
+  display: block;
+  letter-spacing: 0.5px;
+  text-transform: uppercase;
+}
