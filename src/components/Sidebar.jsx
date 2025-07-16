@@ -7,8 +7,7 @@ function Sidebar() {
       <ul className="sidebar-links">
         <li><a href="/dashboard">Dashboard</a></li>
         <li><a href="/cadastro">Cadastrar Pessoas</a></li>
-        <li><a href="/consulta">Consulta</a></li>
-        <li><a href="/ocorrencias">Ocorrências</a></li>
+        <li><a href="/lista-pessoas">Consulta</a></li>
         <li><a href="/">Sair</a></li>
       </ul>
     </aside>

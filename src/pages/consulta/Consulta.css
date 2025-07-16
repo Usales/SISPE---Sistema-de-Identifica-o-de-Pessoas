@@ -1,0 +1,45 @@
+.consulta-container {
+  max-width: 800px;
+  margin: 40px auto;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  padding: 32px 24px;
+}
+
+.consulta-busca {
+  width: 100%;
+  padding: 10px 12px;
+  margin-bottom: 18px;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 16px;
+  outline: none;
+  box-sizing: border-box;
+}
+
+.consulta-tabela {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 24px;
+}
+
+.consulta-tabela th, .consulta-tabela td {
+  padding: 12px 8px;
+  border-bottom: 1px solid #eee;
+  text-align: left;
+}
+
+.consulta-tabela th {
+  background: #f7f7f7;
+  font-weight: 600;
+  color: #444;
+}
+
+.consulta-tabela tr:hover, .consulta-linha-clicavel:hover {
+  background: #f2f2f2;
+}
+
+.consulta-linha-clicavel {
+  transition: background 0.2s;
+} 

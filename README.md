@@ -1,87 +1,37 @@
-# SISPE-FRONTEND
+# SISPE - Sistema de Pessoas
 
-Painel administrativo para cadastro e gestão de pessoas, desenvolvido em **React** com **React Router**.
+## Login Simulado
+- **Usuário:** `admin`
+- **Senha:** `1234`
+- O login é apenas simulado no frontend para acesso ao sistema.
 
-## ✨ Funcionalidades
+## Funcionalidades
+- Cadastro de pessoas com foto (upload para Supabase Storage)
+- Consulta de pessoas com busca por nome ou CPF e visualização da foto
+- Visualização detalhada de cada pessoa, com opção de baixar PDF dos dados e foto
+- Edição dos dados da pessoa diretamente pela tela de detalhes
+- Listagem de ocorrências (se implementado)
 
-- **Login Simulado:**  
-  - Usuário: `admin`  
-  - Senha: `1234`  
-  - Feedback visual, validação, loading e redirecionamento automático para o dashboard.
+## Instalação
 
-- **Dashboard:**  
-  - Página inicial após login, com navegação para as principais funcionalidades.
-
-- **Cadastro de Pessoas:**  
-  - Formulário completo e responsivo.
-  - Upload de foto com preview.
-  - Campos: nome, data de nascimento, etnia, nacionalidade, CPF, RG, sexo, endereço e observações.
-  - Validação de campos e feedback ao usuário.
-
-- **Sidebar e Navbar:**  
-  - Navegação moderna e estilizada para cadastro, consulta, edição, visualização, ocorrências, upload de imagens e logout.
-
-- **Acessibilidade e Layout:**  
-  - Formulários acessíveis.
-  - Layout centralizado, responsivo e sem barras de rolagem duplas.
-  - Scroll na página inteira.
-
-- **Organização de Código:**  
-  - Componentes organizados em subpastas.
-  - Rotas estruturadas com React Router.
-  - Imports e arquivos desnecessários removidos.
-
-## 🚀 Como rodar o projeto
-
-1. **Clone o repositório:**
+1. Clone o repositório:
    ```bash
-   git clone https://github.com/seu-usuario/SISPE-FRONTEND.git
-   cd SISPE-FRONTEND
+   git clone <url-do-repositorio>
    ```
-
-2. **Instale as dependências:**
+2. Instale as dependências:
    ```bash
    npm install
    ```
-
-3. **Inicie o projeto:**
+3. Acesse o projeto e rode:
    ```bash
-   npm start
+   npm run dev
    ```
 
-4. **Acesse:**  
-   [http://localhost:3000](http://localhost:3000)
+## Observações
+- Para gerar PDF dos dados e foto, é usado `jspdf` e `html2canvas`.
+- O upload de fotos só funciona se o bucket e as policies estiverem corretamente configurados.
+- Para editar dados, clique no lápis vermelho na tela de detalhes da pessoa.
 
-## 🛠️ Tecnologias utilizadas
+---
 
-- React
-- React Router
-- CSS tradicional (sem frameworks)
-- (Pronto para integração com backend)
-
-## 📁 Estrutura de pastas
-
-```
-src/
-  components/
-    Sidebar/
-    Navbar/
-    ...
-  pages/
-    Dashboard/
-    CadastroPessoa/
-    ...
-  routes/
-  styles/
-public/
-```
-
-## 📋 Observações
-
-- O login é simulado apenas no front-end.
-- O sistema está pronto para receber integrações com backend (API REST).
-- O layout e os componentes seguem boas práticas de acessibilidade e usabilidade.
-
-## 👨‍💻 Contribuição
-
-Sinta-se à vontade para abrir issues, sugerir melhorias ou enviar pull requests!
+Se tiver dúvidas, consulte o código ou abra uma issue!

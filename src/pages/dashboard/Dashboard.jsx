@@ -1,7 +1,10 @@
 import Sidebar from '../../components/Sidebar';
 import Navbar from '../../components/Navbar';
+import { useNavigate } from 'react-router-dom';
 
 function Dashboard() {
+  const navigate = useNavigate();
+
   return (
     <div style={{ display: 'flex', minHeight: '100vh' }}>
       <Sidebar />
