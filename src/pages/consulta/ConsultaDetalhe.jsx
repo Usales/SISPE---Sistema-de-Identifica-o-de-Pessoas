@@ -111,6 +111,22 @@ function ConsultaDetalhe() {
     }
   };
 
+  // Adicionar função de deletar
+  const handleDelete = async () => {
+    if (window.confirm('Tem certeza que deseja deletar esta pessoa? Esta ação não pode ser desfeita.')) {
+      const { error } = await supabase
+        .from('pessoas')
+        .delete()
+        .eq('id', id);
+      if (error) {
+        alert('Erro ao deletar: ' + error.message);
+      } else {
+        alert('Pessoa deletada com sucesso!');
+        navigate('/consulta');
+      }
+    }
+  };
+
   if (loading) return <div className="consulta-container"><p>Carregando...</p></div>;
   if (!pessoa) return <div className="consulta-container"><p>Pessoa não encontrada.</p></div>;
 
@@ -157,6 +173,29 @@ function ConsultaDetalhe() {
           <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
             <circle cx="11" cy="11" r="11" fill="#fff" />
             <path d="M6 15.5V17H7.5L14.13 10.37L12.63 8.87L6 15.5ZM16.71 8.04C17.1 7.65 17.1 7.02 16.71 6.63L15.37 5.29C14.98 4.9 14.35 4.9 13.96 5.29L12.13 7.12L14.88 9.87L16.71 8.04Z" fill="#e53935" />
+          </svg>
+        </button>
+        <button
+          onClick={handleDelete}
+          style={{
+            marginLeft: 8,
+            width: 40,
+            height: 40,
+            borderRadius: '50%',
+            background: '#fff',
+            border: 'none',
+            boxShadow: '0 2px 8px rgba(0,0,0,0.15)',
+            display: 'flex',
+            alignItems: 'center',
+            justifyContent: 'center',
+            cursor: 'pointer',
+            zIndex: 10
+          }}
+          aria-label="Deletar"
+        >
+          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <circle cx="11" cy="11" r="11" fill="#fff" />
+            <path d="M7 9h8M9 9v6m4-6v6M5 7h12v2H5V7zm2-2h6v2H7V5z" stroke="#e53935" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
           </svg>
         </button>
       </div>
