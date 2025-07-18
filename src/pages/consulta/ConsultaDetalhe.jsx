@@ -193,9 +193,13 @@ function ConsultaDetalhe() {
           }}
           aria-label="Deletar"
         >
-          <svg width="22" height="22" viewBox="0 0 22 22" fill="none" xmlns="http://www.w3.org/2000/svg">
-            <circle cx="11" cy="11" r="11" fill="#fff" />
-            <path d="M7 9h8M9 9v6m4-6v6M5 7h12v2H5V7zm2-2h6v2H7V5z" stroke="#e53935" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round"/>
+          {/* Ícone de lixeira */}
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+            <rect x="5" y="7" width="14" height="12" rx="2" stroke="#e53935" strokeWidth="2"/>
+            <path d="M3 7h18" stroke="#e53935" strokeWidth="2" strokeLinecap="round"/>
+            <path d="M10 11v4" stroke="#e53935" strokeWidth="2" strokeLinecap="round"/>
+            <path d="M14 11v4" stroke="#e53935" strokeWidth="2" strokeLinecap="round"/>
+            <path d="M8 7V5a2 2 0 0 1 2-2h4a2 2 0 0 1 2 2v2" stroke="#e53935" strokeWidth="2"/>
           </svg>
         </button>
       </div>

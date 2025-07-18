@@ -1,0 +1,76 @@
+.sispe-footer {
+  background: #18181b;
+  color: #fff;
+  padding: 32px 0 16px 0;
+  border-top: 2px solid #2563eb;
+  width: 100%;
+  margin-top: 32px;
+}
+
+.sispe-footer-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+  gap: 32px;
+  padding: 0 24px;
+}
+
+.sispe-footer-col {
+  flex: 1 1 220px;
+  min-width: 220px;
+}
+
+.sispe-footer-title {
+  font-size: 1.4rem;
+  font-weight: bold;
+  margin-bottom: 8px;
+}
+
+.sispe-footer-desc {
+  color: #cbd5e1;
+  font-size: 1rem;
+  margin-bottom: 12px;
+}
+
+.sispe-footer-subtitle {
+  font-size: 1.1rem;
+  font-weight: 600;
+  margin-bottom: 8px;
+}
+
+.sispe-footer-list {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+}
+
+.sispe-footer-list li {
+  color: #cbd5e1;
+  font-size: 0.98rem;
+  margin-bottom: 6px;
+}
+
+.sispe-footer-list a {
+  color: #60a5fa;
+  text-decoration: none;
+  transition: color 0.2s;
+}
+
+.sispe-footer-list a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+@media (max-width: 800px) {
+  .sispe-footer-container {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 18px;
+  }
+  .sispe-footer-col {
+    min-width: 0;
+    width: 100%;
+  }
+} 

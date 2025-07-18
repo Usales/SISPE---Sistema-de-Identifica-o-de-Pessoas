@@ -1,0 +1,21 @@
+.dashboard-containers-row {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: flex-start;
+    gap: 16px;
+    margin-top: 60px;   
+}
+
+.container, .container1 {
+    width: 800px;
+    height: 400px;
+    background: #fff;
+    border-radius: 15px;
+    box-shadow: 0 2px 16px rgba(0,0,0,0.3);
+    border: 1px solid #d2d4d6;
+    padding: 10px;
+    z-index: 1000;
+    position: relative;
+}
+

@@ -31,6 +31,13 @@ function Login() {
     }
     setLoading(true);
 
+    // ACESSO ADMIN HARDCODED
+    if (username === 'admin' && password === '1234') {
+      navigate('/dashboard');
+      setLoading(false);
+      return;
+    }
+
     try {
       // Transforma o CPF em email fake
       const fakeEmail = `${username.replace(/\D/g, '')}@sispe.com`;
@@ -173,7 +180,7 @@ function Login() {
       >
         <h1 className="login-title">SISPE</h1>
         <h2 className="login-subtitle">Sistema de Identificação de Pessoas</h2>
-        <h3 className="login-subtitle">{isLoginMode ? 'Login' : 'Cadastro'}</h3>
+        <h3 className="login-subtitle">Acesse abaixo:</h3>
         
         {error && (
           <div className="login-error" role="alert" aria-live="assertive">
@@ -188,7 +195,7 @@ function Login() {
             <input
               type="text"
               className="login-input"
-              placeholder="Digite seu CPF"
+              placeholder="Digite admin"
               value={username}
               onChange={e => setUsername(e.target.value)}
             />
@@ -197,7 +204,7 @@ function Login() {
             <input
               type="password"
               className="login-input"
-              placeholder="Digite sua senha"
+              placeholder="Digite 1234"
               value={password}
               onChange={e => setPassword(e.target.value)}
             />
@@ -206,71 +213,8 @@ function Login() {
               {loading && <span className="login-spinner"></span>}
               {loading ? 'Entrando...' : 'Entrar'}
             </button>
-            <div className="mode-switch">
-              <p>Não tem uma conta?{' '}
-                <span onClick={toggleMode} className="switch-link">
-                  Cadastre-se
-                </span>
-              </p>
-            </div>
           </>
-        ) : (
-          // Modo Cadastro
-          <>
-            <label className='label-title'>Nome Completo *</label>
-            <input
-              type="text"
-              className="login-input"
-              name="nome"
-              placeholder="Digite seu nome completo"
-              value={formData.nome}
-              onChange={handleFormChange}
-            />
-
-            <label className='label-title'>CPF *</label>
-            <input
-              type="text"
-              className="login-input"
-              name="cpf"
-              placeholder="000.000.000-00"
-              value={formData.cpf}
-              onChange={handleCpfChange}
-            />
-
-            <label className='label-title'>Senha *</label>
-            <input
-              type="password"
-              className="login-input"
-              name="senha"
-              placeholder="Digite sua senha"
-              value={formData.senha}
-              onChange={handleFormChange}
-            />
-
-            <label className='label-title'>Confirmar Senha *</label>
-            <input
-              type="password"
-              className="login-input"
-              name="confirmarSenha"
-              placeholder="Confirme sua senha"
-              value={formData.confirmarSenha}
-              onChange={handleFormChange}
-            />
-
-            <button type="submit" className="login-btn" disabled={loading} aria-busy={loading}>
-              {loading && <span className="login-spinner"></span>}
-              {loading ? 'Cadastrando...' : 'Cadastrar'}
-            </button>
-
-            <div className="mode-switch">
-              <p>Já tem uma conta?{' '}
-                <span onClick={toggleMode} className="switch-link">
-                  Fazer login
-                </span>
-              </p>
-            </div>
-          </>
-        )}
+        ) : null}
       </form>
     </div>
   );
