@@ -125,16 +125,6 @@ function Dashboard() {
               </div>
             </div>
 
-            <div className="dashboard-info-card">
-              <h2 className="info-card-title">O que você pode fazer aqui</h2>
-              <ul className="info-card-list">
-                <li>Cadastrar pessoas com dados e foto</li>
-                <li>Consultar registros rapidamente</li>
-                <li>Controlar identificação em eventos</li>
-                <li>Sistema online e gratuito</li>
-              </ul>
-            </div>
-
             <div className="dashboard-video-card">
               <h2 className="video-card-title">Demonstração do Sistema</h2>
               <div className="video-wrapper">
@@ -148,6 +138,16 @@ function Dashboard() {
                   Seu navegador não suporta o elemento de vídeo.
                 </video>
               </div>
+            </div>
+
+            <div className="dashboard-info-card">
+              <h2 className="info-card-title">O que você pode fazer aqui</h2>
+              <ul className="info-card-list">
+                <li>Cadastrar pessoas com dados e foto</li>
+                <li>Consultar registros rapidamente</li>
+                <li>Controlar identificação em eventos</li>
+                <li>Sistema online e gratuito</li>
+              </ul>
             </div>
           </div>
           <Footer />
