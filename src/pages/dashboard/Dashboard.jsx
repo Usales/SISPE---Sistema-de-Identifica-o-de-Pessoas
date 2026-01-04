@@ -130,7 +130,6 @@ function Dashboard() {
               <div className="video-wrapper">
                 <video
                   controls
-                  autoPlay
                   loop
                   className="dashboard-video"
                 >
