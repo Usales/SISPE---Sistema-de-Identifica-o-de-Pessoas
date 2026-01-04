@@ -6,6 +6,7 @@ import { supabase } from '../../supabaseClient';
 import './Dashboard.css';
 import Footer from '../../components/Footer';
 import { FaUsers, FaSearch, FaClock, FaCheckCircle } from 'react-icons/fa';
+import video from '../../arquivos/SISPE.mp4';
 
 function Dashboard() {
   const navigate = useNavigate();
@@ -132,6 +133,21 @@ function Dashboard() {
                 <li>Controlar identificação em eventos</li>
                 <li>Sistema online e gratuito</li>
               </ul>
+            </div>
+
+            <div className="dashboard-video-card">
+              <h2 className="video-card-title">Demonstração do Sistema</h2>
+              <div className="video-wrapper">
+                <video
+                  controls
+                  autoPlay
+                  loop
+                  className="dashboard-video"
+                >
+                  <source src={video} type="video/mp4" />
+                  Seu navegador não suporta o elemento de vídeo.
+                </video>
+              </div>
             </div>
           </div>
           <Footer />

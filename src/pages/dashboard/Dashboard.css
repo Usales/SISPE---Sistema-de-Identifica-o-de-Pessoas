@@ -183,6 +183,36 @@
   font-size: 1rem;
 }
 
+.dashboard-video-card {
+  background: #fff;
+  border-radius: 12px;
+  padding: 32px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.08);
+  border: 1px solid #e2e8f0;
+  margin-top: 32px;
+}
+
+.video-card-title {
+  font-size: 1.5rem;
+  font-weight: 600;
+  color: #1e293b;
+  margin: 0 0 24px 0;
+}
+
+.video-wrapper {
+  width: 100%;
+  border-radius: 12px;
+  overflow: hidden;
+  background: #000;
+}
+
+.dashboard-video {
+  width: 100%;
+  height: auto;
+  display: block;
+  max-height: 600px;
+}
+
 @media (max-width: 768px) {
   .dashboard-stats-grid,
   .dashboard-actions-grid {
@@ -191,6 +221,14 @@
   
   .info-card-list {
     grid-template-columns: 1fr;
+  }
+
+  .dashboard-video-card {
+    padding: 24px;
+  }
+
+  .video-card-title {
+    font-size: 1.25rem;
   }
 }
 
