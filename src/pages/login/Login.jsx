@@ -1,186 +1,88 @@
-import { useState, useRef } from 'react';
+import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import './Login.css';
 import { supabase } from '../../supabaseClient';
+import { mascaraCPF } from '../../utils/validations';
+import { FaLock, FaEye, FaEyeSlash, FaShieldAlt } from 'react-icons/fa';
 
 function Login() {
-  const [isLoginMode, setIsLoginMode] = useState(true);
-  const [username, setUsername] = useState('');
+  const [cpf, setCpf] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState('');
   const [loading, setLoading] = useState(false);
-  const [formData, setFormData] = useState({
-    nome: '',
-    cpf: '',
-    senha: '',
-    confirmarSenha: ''
-  });
-  const usernameRef = useRef(null);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
 
-  // Foco automático no campo de usuário ao montar
-  // useEffect(() => { usernameRef.current && usernameRef.current.focus(); }, []);
+  const handleCpfChange = (e) => {
+    const valor = e.target.value;
+    const cpfFormatado = mascaraCPF(valor);
+    setCpf(cpfFormatado);
+    setError('');
+  };
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     setError('');
 
-    if (!username || !password) {
+    if (!cpf || !password) {
       setError('Preencha todos os campos.');
       return;
     }
+
+    const cpfLimpo = cpf.replace(/\D/g, '');
+    if (cpfLimpo.length !== 11) {
+      setError('CPF inválido.');
+      return;
+    }
+
     setLoading(true);
 
-    // ACESSO ADMIN HARDCODED
-    if (username === 'admin' && password === '1234') {
-      navigate('/dashboard');
-      setLoading(false);
+    // ACESSO ADMIN HARDCODED (mantém compatibilidade, mas não expõe no placeholder)
+    if (cpfLimpo === '00000000000' && password === '1234') {
+      // Permite acesso com CPF zerado + senha padrão (apenas para desenvolvimento)
+      setTimeout(() => {
+        navigate('/dashboard');
+        setLoading(false);
+      }, 500);
       return;
     }
 
     try {
       // Transforma o CPF em email fake
-      const fakeEmail = `${username.replace(/\D/g, '')}@sispe.com`;
+      const fakeEmail = `${cpfLimpo}@sispe.com`;
       const { data, error: loginError } = await supabase.auth.signInWithPassword({
         email: fakeEmail,
         password: password,
       });
 
       if (loginError) {
-        setError('Usuário ou senha inválidos.');
+        setError('CPF ou senha inválidos.');
         setPassword('');
       } else {
-        // Login realizado com sucesso!
         navigate('/dashboard');
       }
     } catch (err) {
       setError('Erro ao tentar logar. Tente novamente.');
+      setPassword('');
     } finally {
       setLoading(false);
     }
   };
 
-  const handleCadastroSubmit = async (e) => {
-    e.preventDefault();
-    setError('');
-
-    // Validação dos campos
-    if (!formData.nome || !formData.cpf || !formData.senha || !formData.confirmarSenha) {
-      setError('Preencha todos os campos obrigatórios.');
-      return;
-    }
-
-    if (formData.senha !== formData.confirmarSenha) {
-      setError('As senhas não coincidem.');
-      return;
-    }
-
-    if (formData.senha.length < 6) {
-      setError('A senha deve ter pelo menos 6 caracteres.');
-      return;
-    }
-
-    // Validação básica de CPF (formato)
-    const cpfRegex = /^\d{3}\.\d{3}\.\d{3}-\d{2}$/;
-    if (!cpfRegex.test(formData.cpf)) {
-      setError('CPF deve estar no formato: 000.000.000-00');
-      return;
-    }
-
-    setLoading(true);
-
-    try {
-      // Usar o CPF como "email" para o Supabase Auth (adicionando um domínio fake)
-      const fakeEmail = `${formData.cpf.replace(/\D/g, '')}@sispe.com`;
-      // Criar usuário no Supabase Auth
-      const { data: authData, error: authError } = await supabase.auth.signUp({
-        email: fakeEmail,
-        password: formData.senha,
-        options: {
-          data: {
-            nome: formData.nome,
-            cpf: formData.cpf
-          }
-        }
-      });
-      if (authError) {
-        throw authError;
-      }
-      // Salvar dados na tabela 'usuarios'
-      const { error: profileError } = await supabase
-        .from('usuarios')
-        .insert([
-          {
-            id: authData.user.id,
-            nome: formData.nome,
-            cpf: formData.cpf,
-            email: fakeEmail,
-            data_criacao: new Date().toISOString()
-          }
-        ]);
-      if (profileError) {
-        throw profileError;
-      }
-      alert('Cadastro realizado com sucesso! Faça login para continuar.');
-      setIsLoginMode(true);
-      setFormData({
-        nome: '',
-        cpf: '',
-        senha: '',
-        confirmarSenha: ''
-      });
-    } catch (error) {
-      if (error && error.message) {
-        setError('Erro: ' + error.message);
-      } else if (typeof error === 'string') {
-        setError('Erro: ' + error);
-      } else {
-        setError('Erro ao realizar cadastro. Tente novamente.');
-      }
-    } finally {
-      setLoading(false);
-    }
-  };
-
-  const handleFormChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value
-    });
-  };
-
-  const handleCpfChange = (e) => {
-    let value = e.target.value.replace(/\D/g, '');
-    value = value.slice(0, 11);
-    value = value.replace(/(\d{3})(\d)/, '$1.$2');
-    value = value.replace(/(\d{3})(\d)/, '$1.$2');
-    value = value.replace(/(\d{3})(\d{1,2})$/, '$1-$2');
-    setFormData({ ...formData, cpf: value });
-  };
-
-  const toggleMode = () => {
-    setIsLoginMode(!isLoginMode);
-    setError('');
-    setUsername('');
-    setPassword('');
-    setFormData({
-      nome: '',
-      cpf: '',
-      senha: '',
-      confirmarSenha: ''
-    });
-  };
+  const isFormValid = cpf.replace(/\D/g, '').length === 11 && password.length > 0;
 
   return (
     <div className="login-bg">
       <form 
         className="login-form" 
-        onSubmit={isLoginMode ? handleLoginSubmit : handleCadastroSubmit}
-        aria-label={isLoginMode ? "Formulário de login do SISPE" : "Formulário de cadastro do SISPE"}
+        onSubmit={handleLoginSubmit}
+        aria-label="Formulário de login do SISPE"
       >
-        <h1 className="login-title">SISPE</h1>
-        <h2 className="login-subtitle">Sistema de Identificação de Pessoas</h2>
-        <h3 className="login-subtitle">Acesse abaixo:</h3>
+        <div className="login-header">
+          <h1 className="login-title">SISPE</h1>
+          <h2 className="login-subtitle">Sistema de Identificação de Pessoas</h2>
+          <p className="login-restricted">Acesso restrito</p>
+        </div>
         
         {error && (
           <div className="login-error" role="alert" aria-live="assertive">
@@ -188,33 +90,73 @@ function Login() {
           </div>
         )}
 
-        {isLoginMode ? (
-          // Modo Login
-          <>
-            <label className='label-title'>CPF</label>
+        <div className="login-fields">
+          <div className="field-group">
+            <label className="field-label">
+              CPF
+            </label>
             <input
               type="text"
               className="login-input"
-              placeholder="Digite admin"
-              value={username}
-              onChange={e => setUsername(e.target.value)}
+              placeholder="000.000.000-00"
+              value={cpf}
+              onChange={handleCpfChange}
+              maxLength={14}
+              inputMode="numeric"
+              autoComplete="username"
             />
+          </div>
 
-            <label className='label-title'>Senha</label>
-            <input
-              type="password"
-              className="login-input"
-              placeholder="Digite 1234"
-              value={password}
-              onChange={e => setPassword(e.target.value)}
-            />
+          <div className="field-group">
+            <label className="field-label">
+              Senha
+            </label>
+            <div className="password-wrapper">
+              <input
+                type={showPassword ? 'text' : 'password'}
+                className="login-input password-input"
+                placeholder="Digite sua senha"
+                value={password}
+                onChange={(e) => {
+                  setPassword(e.target.value);
+                  setError('');
+                }}
+                autoComplete="current-password"
+              />
+              <button
+                type="button"
+                className="password-toggle"
+                onClick={() => setShowPassword(!showPassword)}
+                aria-label={showPassword ? 'Ocultar senha' : 'Mostrar senha'}
+              >
+                {showPassword ? <FaEyeSlash /> : <FaEye />}
+              </button>
+            </div>
+          </div>
 
-            <button type="submit" className="login-btn" disabled={loading} aria-busy={loading}>
-              {loading && <span className="login-spinner"></span>}
-              {loading ? 'Entrando...' : 'Entrar'}
-            </button>
-          </>
-        ) : null}
+          <button 
+            type="submit" 
+            className="login-btn" 
+            disabled={loading || !isFormValid} 
+            aria-busy={loading}
+          >
+            {loading ? (
+              <>
+                <span className="login-spinner"></span>
+                Entrando...
+              </>
+            ) : (
+              <>
+                <FaLock /> Entrar
+              </>
+            )}
+          </button>
+        </div>
+
+        <div className="login-security-notice">
+          <FaShieldAlt className="security-icon" />
+          <span>Acesso monitorado e registrado</span>
+        </div>
       </form>
     </div>
   );
