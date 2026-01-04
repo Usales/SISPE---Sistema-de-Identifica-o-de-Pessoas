@@ -32,6 +32,8 @@
 .sidebar-links li {
   margin-bottom: 4px;
   width: 100%;
+  box-sizing: border-box;
+  overflow: hidden;
 }
 
 .sidebar-link {
@@ -49,6 +51,7 @@
   background: transparent;
   cursor: pointer;
   position: relative;
+  box-sizing: border-box;
 }
 
 .sidebar-link:hover {
@@ -70,6 +73,7 @@
   bottom: 0;
   width: 3px;
   background: #2563eb;
+  border-radius: 0 2px 2px 0;
 }
 
 .sidebar-icon {
