@@ -64,7 +64,27 @@ export function dataISOParaBR(dataISO) {
 // Calcular idade a partir de data de nascimento
 export function calcularIdade(dataNascimento) {
   if (!dataNascimento) return null;
-  const partes = dataNascimento.split('/');
+  
+  // Se for formato ISO (yyyy-mm-dd)
+  let partes;
+  if (dataNascimento.includes('-')) {
+    partes = dataNascimento.split('-');
+    if (partes.length !== 3) return null;
+    // Formato ISO: yyyy-mm-dd
+    const nascimento = new Date(parseInt(partes[0]), parseInt(partes[1]) - 1, parseInt(partes[2]));
+    const hoje = new Date();
+    let idade = hoje.getFullYear() - nascimento.getFullYear();
+    const mes = hoje.getMonth() - nascimento.getMonth();
+    
+    if (mes < 0 || (mes === 0 && hoje.getDate() < nascimento.getDate())) {
+      idade--;
+    }
+    
+    return idade;
+  }
+  
+  // Se for formato BR (dd/mm/yyyy)
+  partes = dataNascimento.split('/');
   if (partes.length !== 3) return null;
   
   const nascimento = new Date(parseInt(partes[2]), parseInt(partes[1]) - 1, parseInt(partes[0]));
@@ -92,3 +112,10 @@ export function validarDataNaoFutura(dataBR) {
   return data <= hoje;
 }
 
+// Formatar CPF para exibição
+export function formatarCPF(cpf) {
+  if (!cpf) return '';
+  const apenasNumeros = cpf.replace(/\D/g, '');
+  if (apenasNumeros.length !== 11) return cpf;
+  return mascaraCPF(apenasNumeros);
+}
