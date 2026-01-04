@@ -10,7 +10,7 @@ import {
   calcularIdade,
   validarDataNaoFutura
 } from '../../utils/validations';
-import { FaCheckCircle, FaTimesCircle, FaCamera, FaUser } from 'react-icons/fa';
+import { FaCheckCircle, FaTimesCircle, FaCamera, FaUser, FaArrowLeft } from 'react-icons/fa';
 
 const UFS = [
   'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA',
@@ -232,8 +232,20 @@ function CadastroPessoa() {
     <div className="cadastro-container">
       <form className="cadastro-form" onSubmit={handleSubmit}>
         <div className="form-header">
-          <h2>Cadastro de Pessoa</h2>
-          <p className="form-legend">* Campos obrigatórios</p>
+          <div className="header-top">
+            <button 
+              type="button"
+              className="btn-voltar"
+              onClick={() => navigate('/dashboard')}
+              title="Voltar ao dashboard"
+            >
+              <FaArrowLeft />
+            </button>
+            <div className="header-title">
+              <h2>Cadastro de Pessoa</h2>
+              <p className="form-legend">* Campos obrigatórios</p>
+            </div>
+          </div>
         </div>
 
         {/* Seção 1: Identificação */}

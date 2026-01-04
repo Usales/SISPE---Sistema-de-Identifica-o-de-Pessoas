@@ -23,6 +23,39 @@
   border-bottom: 2px solid #e2e8f0;
 }
 
+.header-top {
+  display: flex;
+  align-items: flex-start;
+  gap: 16px;
+}
+
+.btn-voltar {
+  background: #f8fafc;
+  border: 2px solid #e2e8f0;
+  color: #475569;
+  width: 40px;
+  height: 40px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  flex-shrink: 0;
+  margin-top: 4px;
+}
+
+.btn-voltar:hover {
+  background: #f1f5f9;
+  border-color: #cbd5e1;
+  color: #1e293b;
+  transform: translateX(-2px);
+}
+
+.header-title {
+  flex: 1;
+}
+
 .form-header h2 {
   color: #1e293b;
   font-size: 1.875rem;
