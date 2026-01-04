@@ -13,7 +13,7 @@ import {
   calcularIdade,
   validarDataNaoFutura
 } from '../../utils/validations';
-import { FaCheckCircle, FaTimesCircle, FaCamera, FaUser, FaArrowLeft } from 'react-icons/fa';
+import { FaCheckCircle, FaTimesCircle, FaCamera, FaUser } from 'react-icons/fa';
 
 const UFS = [
   'AC', 'AL', 'AP', 'AM', 'BA', 'CE', 'DF', 'ES', 'GO', 'MA',
