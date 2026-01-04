@@ -6,7 +6,7 @@ import Sidebar from '../../components/Sidebar';
 import Navbar from '../../components/Navbar';
 import Footer from '../../components/Footer';
 import { dataISOParaBR, calcularIdade, formatarCPF } from '../../utils/validations';
-import { FaSearch, FaUser, FaEye, FaEdit, FaFileAlt, FaChevronLeft, FaChevronRight, FaSpinner, FaArrowLeft } from 'react-icons/fa';
+import { FaSearch, FaUser, FaEye, FaEdit, FaFileAlt, FaChevronLeft, FaChevronRight, FaSpinner } from 'react-icons/fa';
 
 function Consulta() {
   const [pessoas, setPessoas] = useState([]);
@@ -131,25 +131,23 @@ function Consulta() {
   };
 
   return (
-    <div className="consulta-container">
-      <div className="consulta-header">
-        <div className="header-left">
-          <button 
-            className="btn-voltar"
-            onClick={() => navigate('/dashboard')}
-            title="Voltar ao dashboard"
-          >
-            <FaArrowLeft />
-          </button>
-          <h2>Consulta de Pessoas</h2>
-        </div>
-        <button 
-          className="btn-cadastrar"
-          onClick={() => navigate('/cadastro')}
-        >
-          + Cadastrar pessoa
-        </button>
-      </div>
+    <>
+      <div style={{ display: 'flex', minHeight: '100vh' }}>
+        <Sidebar />
+        <div style={{ flex: 1, marginLeft: 180, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
+          <div style={{ width: '100%' }}>
+            <Navbar />
+          </div>
+          <div className="consulta-container">
+            <div className="consulta-header">
+              <h2>Consulta de Pessoas</h2>
+              <button 
+                className="btn-cadastrar"
+                onClick={() => navigate('/cadastro')}
+              >
+                + Cadastrar pessoa
+              </button>
+            </div>
 
       <div className="busca-container">
         <div className="busca-wrapper">
@@ -367,7 +365,11 @@ function Consulta() {
           </div>
         </>
       )}
-    </div>
+          </div>
+          <Footer />
+        </div>
+      </div>
+    </>
   );
 }
 
