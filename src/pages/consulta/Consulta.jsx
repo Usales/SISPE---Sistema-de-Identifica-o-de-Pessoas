@@ -3,7 +3,7 @@ import { supabase } from '../../supabaseClient';
 import './Consulta.css';
 import { useNavigate } from 'react-router-dom';
 import { dataISOParaBR, calcularIdade, formatarCPF } from '../../utils/validations';
-import { FaSearch, FaUser, FaEye, FaEdit, FaFileAlt, FaChevronLeft, FaChevronRight, FaSpinner } from 'react-icons/fa';
+import { FaSearch, FaUser, FaEye, FaEdit, FaFileAlt, FaChevronLeft, FaChevronRight, FaSpinner, FaArrowLeft } from 'react-icons/fa';
 
 function Consulta() {
   const [pessoas, setPessoas] = useState([]);
@@ -130,7 +130,16 @@ function Consulta() {
   return (
     <div className="consulta-container">
       <div className="consulta-header">
-        <h2>Consulta de Pessoas</h2>
+        <div className="header-left">
+          <button 
+            className="btn-voltar"
+            onClick={() => navigate('/dashboard')}
+            title="Voltar ao dashboard"
+          >
+            <FaArrowLeft />
+          </button>
+          <h2>Consulta de Pessoas</h2>
+        </div>
         <button 
           className="btn-cadastrar"
           onClick={() => navigate('/cadastro')}
