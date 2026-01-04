@@ -2,6 +2,9 @@ import { useEffect, useState } from 'react';
 import { supabase } from '../../supabaseClient';
 import './Consulta.css';
 import { useNavigate } from 'react-router-dom';
+import Sidebar from '../../components/Sidebar';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 import { dataISOParaBR, calcularIdade, formatarCPF } from '../../utils/validations';
 import { FaSearch, FaUser, FaEye, FaEdit, FaFileAlt, FaChevronLeft, FaChevronRight, FaSpinner, FaArrowLeft } from 'react-icons/fa';
 

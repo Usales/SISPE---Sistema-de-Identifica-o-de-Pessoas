@@ -2,6 +2,9 @@ import { useState } from 'react';
 import './CadastroPessoa.css';
 import { supabase } from '../../supabaseClient';
 import { useNavigate } from 'react-router-dom';
+import Sidebar from '../../components/Sidebar';
+import Navbar from '../../components/Navbar';
+import Footer from '../../components/Footer';
 import { 
   mascaraCPF, 
   validarCPF, 
@@ -490,8 +493,12 @@ function CadastroPessoa() {
             Salvar cadastro
           </button>
         </div>
-      </form>
-    </div>
+            </form>
+          </div>
+          <Footer />
+        </div>
+      </div>
+    </>
   );
 }
 
