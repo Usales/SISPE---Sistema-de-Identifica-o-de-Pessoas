@@ -15,10 +15,11 @@ function Login() {
 
   const handleCpfChange = (e) => {
     const valor = e.target.value;
-    // Se começar com "admin", não aplica máscara
-    if (valor.toLowerCase().startsWith('admin')) {
+    // Se contém letras (como "admin"), não aplica máscara
+    if (/[a-zA-Z]/.test(valor)) {
       setCpf(valor);
     } else {
+      // Aplica máscara apenas para números (CPF)
       const cpfFormatado = mascaraCPF(valor);
       setCpf(cpfFormatado);
     }
