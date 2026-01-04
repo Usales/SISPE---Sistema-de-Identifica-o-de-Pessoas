@@ -230,22 +230,18 @@ function CadastroPessoa() {
 
   return (
     <div className="cadastro-container">
+      <button 
+        type="button"
+        className="btn-voltar-externo"
+        onClick={() => navigate('/dashboard')}
+        title="Voltar ao dashboard"
+      >
+        <FaArrowLeft />
+      </button>
       <form className="cadastro-form" onSubmit={handleSubmit}>
         <div className="form-header">
-          <div className="header-top">
-            <button 
-              type="button"
-              className="btn-voltar"
-              onClick={() => navigate('/dashboard')}
-              title="Voltar ao dashboard"
-            >
-              <FaArrowLeft />
-            </button>
-            <div className="header-title">
-              <h2>Cadastro de Pessoa</h2>
-              <p className="form-legend">* Campos obrigatórios</p>
-            </div>
-          </div>
+          <h2>Cadastro de Pessoa</h2>
+          <p className="form-legend">* Campos obrigatórios</p>
         </div>
 
         {/* Seção 1: Identificação */}

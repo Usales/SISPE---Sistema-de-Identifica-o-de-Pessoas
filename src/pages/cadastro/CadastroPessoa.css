@@ -5,6 +5,34 @@
   display: flex;
   justify-content: center;
   align-items: flex-start;
+  position: relative;
+}
+
+.btn-voltar-externo {
+  position: absolute;
+  top: 32px;
+  left: 32px;
+  background: #fff;
+  border: 2px solid #e2e8f0;
+  color: #475569;
+  width: 48px;
+  height: 48px;
+  border-radius: 8px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  z-index: 10;
+}
+
+.btn-voltar-externo:hover {
+  background: #f8fafc;
+  border-color: #cbd5e1;
+  color: #1e293b;
+  transform: translateX(-2px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.12);
 }
 
 .cadastro-form {
@@ -21,39 +49,6 @@
   margin-bottom: 32px;
   padding-bottom: 20px;
   border-bottom: 2px solid #e2e8f0;
-}
-
-.header-top {
-  display: flex;
-  align-items: flex-start;
-  gap: 16px;
-}
-
-.btn-voltar {
-  background: #f8fafc;
-  border: 2px solid #e2e8f0;
-  color: #475569;
-  width: 40px;
-  height: 40px;
-  border-radius: 8px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.2s;
-  flex-shrink: 0;
-  margin-top: 4px;
-}
-
-.btn-voltar:hover {
-  background: #f1f5f9;
-  border-color: #cbd5e1;
-  color: #1e293b;
-  transform: translateX(-2px);
-}
-
-.header-title {
-  flex: 1;
 }
 
 .form-header h2 {
@@ -331,6 +326,14 @@
   .cadastro-container {
     padding: 16px;
   }
+
+  .btn-voltar-externo {
+    top: 16px;
+    left: 16px;
+    width: 44px;
+    height: 44px;
+  }
+}
 
   .cadastro-form {
     padding: 24px 20px;
