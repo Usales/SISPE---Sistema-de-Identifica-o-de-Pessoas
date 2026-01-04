@@ -64,7 +64,7 @@ function Dashboard() {
     <>
       <div style={{ display: 'flex', minHeight: '100vh' }}>
         <Sidebar />
-        <div style={{ flex: 1, marginLeft: 180, display: 'flex', flexDirection: 'column' }}>
+        <div style={{ flex: 1, marginLeft: 180, display: 'flex', flexDirection: 'column', minWidth: 0 }}>
           <div style={{ width: '100%' }}>
             <Navbar />
           </div>
@@ -134,9 +134,9 @@ function Dashboard() {
               </ul>
             </div>
           </div>
+          <Footer />
         </div>
       </div>
-      <Footer />
     </>
   );
 }
