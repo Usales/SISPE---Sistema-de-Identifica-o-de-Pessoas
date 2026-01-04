@@ -105,23 +105,25 @@ html, body {
   align-items: center;
 }
 
-.password-input {
+.password-wrapper .login-input {
   padding-right: 48px;
 }
 
 .password-toggle {
   position: absolute;
-  right: 12px;
+  right: 8px;
   background: transparent;
   border: none;
   color: #64748b;
   cursor: pointer;
-  padding: 8px;
+  padding: 10px 8px;
   display: flex;
   align-items: center;
   justify-content: center;
   transition: color 0.2s;
   font-size: 1.125rem;
+  z-index: 1;
+  height: 100%;
 }
 
 .password-toggle:hover {
