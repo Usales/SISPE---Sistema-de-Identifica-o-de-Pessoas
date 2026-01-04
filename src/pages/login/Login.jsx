@@ -15,8 +15,13 @@ function Login() {
 
   const handleCpfChange = (e) => {
     const valor = e.target.value;
-    const cpfFormatado = mascaraCPF(valor);
-    setCpf(cpfFormatado);
+    // Se começar com "admin", não aplica máscara
+    if (valor.toLowerCase().startsWith('admin')) {
+      setCpf(valor);
+    } else {
+      const cpfFormatado = mascaraCPF(valor);
+      setCpf(cpfFormatado);
+    }
     setError('');
   };
 
@@ -29,21 +34,23 @@ function Login() {
       return;
     }
 
-    const cpfLimpo = cpf.replace(/\D/g, '');
-    if (cpfLimpo.length !== 11) {
-      setError('CPF inválido.');
-      return;
-    }
-
     setLoading(true);
 
-    // ACESSO ADMIN HARDCODED (mantém compatibilidade, mas não expõe no placeholder)
-    if (cpfLimpo === '00000000000' && password === '1234') {
-      // Permite acesso com CPF zerado + senha padrão (apenas para desenvolvimento)
+    // ACESSO ADMIN HARDCODED
+    const usernameLower = cpf.toLowerCase().trim();
+    if (usernameLower === 'admin' && password === '1234') {
       setTimeout(() => {
         navigate('/dashboard');
         setLoading(false);
       }, 500);
+      return;
+    }
+
+    // Validação de CPF apenas se não for "admin"
+    const cpfLimpo = cpf.replace(/\D/g, '');
+    if (cpfLimpo.length !== 11) {
+      setError('CPF inválido.');
+      setLoading(false);
       return;
     }
 
@@ -69,7 +76,8 @@ function Login() {
     }
   };
 
-  const isFormValid = cpf.replace(/\D/g, '').length === 11 && password.length > 0;
+  const cpfLimpo = cpf.replace(/\D/g, '');
+  const isFormValid = (cpf.toLowerCase().trim() === 'admin' || cpfLimpo.length === 11) && password.length > 0;
 
   return (
     <div className="login-bg">
@@ -93,7 +101,7 @@ function Login() {
         <div className="login-fields">
           <div className="field-group">
             <label className="field-label">
-              CPF
+              CPF ou Usuário
             </label>
             <input
               type="text"
@@ -101,8 +109,6 @@ function Login() {
               placeholder="000.000.000-00"
               value={cpf}
               onChange={handleCpfChange}
-              maxLength={14}
-              inputMode="numeric"
               autoComplete="username"
             />
           </div>
